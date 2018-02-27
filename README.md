@@ -2,7 +2,7 @@
 A library provides an easy way to use sharepreference like retrofit and support reactive
 
 ## Usage
-define api interface and data repository
+**define api interface and data repository**
 
 ```
 interface UserService {
@@ -25,16 +25,16 @@ object UserRepository {
 }
 
 ```
-use it in your activity or fragment 
+**use it in your activity or fragment** 
 
 ```
 text.text = UserRepository.getUserName()
 
 ```
 
-Advanced usage
+#### Advanced usage
 
-@SpName
+**@SpName**
 
 define the SharePreferences file name. the default name is the interface name
 ```
@@ -42,7 +42,7 @@ define the SharePreferences file name. the default name is the interface name
 interface UserService {
 
 ```
-@Key
+**@Key**
 
 define the KeyName of SharePreference. the default name is extracted from the method name
 
@@ -55,7 +55,7 @@ interface UserService {
     fun getName(): String
 }
 ```
-@Default 
+**@Default** 
 
 define the get Action default return value. can not be null if your use reactive mode
 
@@ -69,11 +69,11 @@ interface UserService {
 }
 
 ```
-@Clear @Remove
+**@Clear** **@Remove**
 
 define the clear and remove Action
 
-Serializable
+**Serializable**
 
 BriefPreference default support Serializable and Parcelable
 
@@ -105,7 +105,7 @@ class GsonConverterFactory : Converter.Factory {
 BriefPreference(GsonConverterFactory()).create(AppContext.instance, UserService::class.java)
 ```
 
-reactive
+**reactive**
 
 you can implements reactive program in SharePreference
 ```
