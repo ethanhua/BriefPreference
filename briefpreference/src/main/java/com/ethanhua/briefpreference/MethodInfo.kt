@@ -9,19 +9,17 @@ import java.lang.reflect.Type
 
 class MethodInfo(method: Method, args: Array<Any>?) {
 
+    val returnType: Type = method.genericReturnType
     val actionType: Int
-    val returnType: Type
     val key: String
 
     init {
         actionType = getMethodType(method, args)
-        returnType = method.genericReturnType
         key = getKey(method)
     }
 
     private fun getMethodType(method: Method, args: Array<Any>?): Int {
         var methodType = UNKNOWN
-        val returnType = method.genericReturnType
         for (annotation in method.annotations) {
             if (annotation is Remove) {
                 methodType = REMOVE

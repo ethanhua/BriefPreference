@@ -1,6 +1,7 @@
 # BriefPreference
-A library provides an easy way to use sharepreference like retrofit and support reactive
+A library provides an easy way to use SharePreferences like Retrofit and support reactive  
 
+[文章](https://ethanhua.github.io/2018/02/27/briefpreference/)
 ## Usage
 **define api interface and data repository**
 
@@ -32,11 +33,11 @@ text.text = UserRepository.getUserName()
 
 ```
 
-#### Advanced usage
+### Advanced usage
 
 **@SpName**
 
-define the SharePreferences file name. the default name is the interface name
+> define the SharePreferences file name. the default name is the interface name
 ```
 @SpName("user_preferences")
 interface UserService {
@@ -44,7 +45,7 @@ interface UserService {
 ```
 **@Key**
 
-define the KeyName of SharePreference. the default name is extracted from the method name
+> define the KeyName of SharePreference. the default name is extracted from the method name
 
 ```
 interface UserService {
@@ -57,7 +58,7 @@ interface UserService {
 ```
 **@Default** 
 
-define the get Action default return value. can not be null if your use reactive mode
+> define the get Action default return value. can not be null if your use reactive mode
 
 ```
 interface UserService {
@@ -71,12 +72,11 @@ interface UserService {
 ```
 **@Clear** **@Remove**
 
-define the clear and remove Action
+> define the clear and remove Action
 
 **Serializable**
 
-BriefPreference default support Serializable and Parcelable
-
+> BriefPreference default support Serializable and Parcelable  
 if you need custom serializable mode can implements Converter like:
 
 ```
@@ -107,7 +107,7 @@ BriefPreference(GsonConverterFactory()).create(AppContext.instance, UserService:
 
 **reactive**
 
-you can implements reactive program in SharePreference
+> you can implements reactive program in SharePreference
 ```
     fun listUser(@Default listUser: MutableList<User> = mutableListOf()): Observable<List<User>>
 
