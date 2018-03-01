@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-
+apply plugin: 'com.novoda.bintray-release'
 android {
     compileSdkVersion 26
 
@@ -29,4 +29,15 @@ dependencies {
 
 repositories {
     mavenCentral()
+}
+
+publish {
+    userOrg = 'ethanhua'
+    groupId = 'com.ethanhua'
+    artifactId = 'briefpreference'
+    publishVersion = '0.0.1'
+    bintrayUser = 'ethanhua'
+    bintrayKey = ''
+    desc = 'A library provides an easy way to use SharePreference like Retrofit and support reactive'
+    website = 'https://github.com/ethanhua/BriefPreference'
 }

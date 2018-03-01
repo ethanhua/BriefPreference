@@ -37,7 +37,7 @@ interface UserService {
     fun getUser(@Default user: User = User("ethanhua", "avatar")): Observable<User>
 
     @Key("listUser")
-    fun listUser(@Default listUser: MutableList<User> = mutableListOf()): Observable<List<User>>
+    fun listUser(@Default listUser: MutableList<User> = mutableListOf()): Observable<MutableList<User>>
 
     @Key("listUser")
     fun updateUser(listUser: MutableList<User>)
