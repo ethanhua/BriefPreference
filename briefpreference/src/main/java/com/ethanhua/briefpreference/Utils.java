@@ -14,10 +14,10 @@ import java.util.NoSuchElementException;
  * Created by ethanhua on 2018/2/26.
  */
 
-final class Types {
+final class Utils {
     private static final Type[] EMPTY_TYPE_ARRAY = new Type[0];
 
-    private Types() {
+    private Utils() {
         // No instances.
     }
 
@@ -306,7 +306,7 @@ final class Types {
 
         @Override
         public boolean equals(Object other) {
-            return other instanceof ParameterizedType && Types.equals(this, (ParameterizedType) other);
+            return other instanceof ParameterizedType && Utils.equals(this, (ParameterizedType) other);
         }
 
         @Override
@@ -342,7 +342,7 @@ final class Types {
         @Override
         public boolean equals(Object o) {
             return o instanceof GenericArrayType
-                    && Types.equals(this, (GenericArrayType) o);
+                    && Utils.equals(this, (GenericArrayType) o);
         }
 
         @Override
@@ -395,7 +395,7 @@ final class Types {
 
         @Override
         public boolean equals(Object other) {
-            return other instanceof WildcardType && Types.equals(this, (WildcardType) other);
+            return other instanceof WildcardType && Utils.equals(this, (WildcardType) other);
         }
 
         @Override
@@ -413,8 +413,8 @@ final class Types {
     }
 
     public static Type getGenericActualType(Type genericClass, Class<?> superClass) {
-        Class rawType = Types.getRawType(genericClass);
-        ParameterizedType type = (ParameterizedType) Types.getSupertype(genericClass, rawType, superClass);
+        Class rawType = Utils.getRawType(genericClass);
+        ParameterizedType type = (ParameterizedType) Utils.getSupertype(genericClass, rawType, superClass);
         return getParameterUpperBound(type);
     }
 
@@ -428,4 +428,17 @@ final class Types {
         }
         return types[0];
     }
+
+    static <T> void validateServiceInterface(Class<T> service) {
+        if (!service.isInterface()) {
+            throw new IllegalArgumentException("API declarations must be interfaces.");
+        }
+        // Prevent API interfaces from extending other interfaces. This not only avoids a bug in
+        // Android (http://b.android.com/58753) but it forces composition of API declarations which is
+        // the recommended pattern.
+        if (service.getInterfaces().length > 0) {
+            throw new IllegalArgumentException("API interfaces must not extend other interfaces.");
+        }
+    }
+
 }

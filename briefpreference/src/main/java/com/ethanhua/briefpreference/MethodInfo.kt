@@ -14,11 +14,11 @@ class MethodInfo(method: Method, args: Array<Any>?) {
     val key: String
 
     init {
-        actionType = getMethodType(method, args)
+        actionType = getActionType(method, args)
         key = getKey(method)
     }
 
-    private fun getMethodType(method: Method, args: Array<Any>?): Int {
+    private fun getActionType(method: Method, args: Array<Any>?): Int {
         var methodType = UNKNOWN
         for (annotation in method.annotations) {
             if (annotation is Remove) {
@@ -74,8 +74,9 @@ class MethodInfo(method: Method, args: Array<Any>?) {
         if (value.startsWith("is") && returnType === Boolean::class.javaPrimitiveType) return value.substring(2)
         if (value.startsWith("get")) return value.substring(3)
         if (value.startsWith("put")) return value.substring(3)
+        if (value.startsWith("set")) return value.substring(3)
         if (value.startsWith("remove")) return value.substring(6)
-        return if (value.startsWith("set")) value.substring(3) else value
+        return value
     }
 
     private fun methodError(method: Method, message: String, vararg args: Any): RuntimeException {

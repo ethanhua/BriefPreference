@@ -9,23 +9,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        UserRepository.listUser().subscribe({
+        UserRepository.getUser().subscribe {
             it?.let {
-                if(it.isNotEmpty()){
-                    text.text = it[0].userName
-                }
+                text.text = it.userName
             }
-        }, {
-            it.printStackTrace()
-        })
+        }
 
         btn.setOnClickListener({
-            val name = edit.text.toString()
-            val user = User(name, "avatar")
-            UserRepository.updateListUser(mutableListOf(user))
+            UserRepository.putUser(User(edit.text.toString(), "test"))
+            UserRepository.putUserName(edit.text.toString())
         })
         btnRemove.setOnClickListener {
-            UserRepository.remove()
+            UserRepository.removeUser()
         }
         btnClean.setOnClickListener {
             UserRepository.clear()

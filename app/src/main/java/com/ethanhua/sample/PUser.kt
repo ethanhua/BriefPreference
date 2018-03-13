@@ -6,7 +6,7 @@ import android.os.Parcelable
 /**
  * Created by ethanhua on 2018/2/26.
  */
-class PUser(val name:String,val avatar:String):Parcelable {
+class PUser(val name: String, val avatar: String) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString())

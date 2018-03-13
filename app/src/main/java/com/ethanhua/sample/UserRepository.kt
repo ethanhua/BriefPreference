@@ -19,7 +19,7 @@ object UserRepository {
 
     fun clear() = localService.clear()
 
-    fun remove() = localService.removeUser()
+    fun removeUser() = localService.removeUser()
 
     fun putUser(user: User) = localService.putUser(user)
 

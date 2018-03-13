@@ -14,7 +14,7 @@ class AppContext : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        instance =this
+        instance = this
     }
 
 }

@@ -129,8 +129,8 @@ class UserRepository{
 
     fun updateUser(listUser: MutableList<User>)
     
-    fun use(){
-        UserRepository.listUser().subscribe({
+    
+    UserRepository.listUser().subscribe({
                     it?.let {
                         if(it.isNotEmpty()){
                             text.text = it[0].userName
@@ -140,12 +140,12 @@ class UserRepository{
                     it.printStackTrace()
                 })
         
-        btn.setOnClickListener({
+    btn.setOnClickListener({
                     val name = edit.text.toString()
                     val user = User(name, "avatar")
                     UserRepository.updateListUser(mutableListOf(user))
                 })
-    }  
+    
 ``` 
 ## License
 
