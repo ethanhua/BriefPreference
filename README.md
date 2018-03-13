@@ -71,7 +71,7 @@ interface UserService {
 ```
 **@Default** 
 
-> define the get Action default return value. can not be null if your use reactive mode
+> define the get Action default return value. can not be null if you use reactive mode
 
 ```Kotlin
 interface UserService {
@@ -147,6 +147,3 @@ class UserRepository{
                 })
     
 ``` 
-## License
-
-[**The MIT License**](http://opensource.org/licenses/MIT).
